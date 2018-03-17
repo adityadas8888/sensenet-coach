@@ -361,7 +361,7 @@ class CartPole_DQN(Preset):
 class TouchWand_DQN(Preset):
     def __init__(self):
         Preset.__init__(self, DQN, Sensenet, ExplorationParameters)
-        self.env.level = 'TouchWandEnv-v0'
+        self.env.level = 'TouchWandCoachEnv'
         self.agent.num_steps_between_copying_online_weights_to_target = 100
         self.learning_rate = 0.00025
         self.agent.num_episodes_in_experience_replay = 200
@@ -376,7 +376,7 @@ class TouchWand_DQN(Preset):
 class TouchWand_PPO(Preset):
     def __init__(self):
         Preset.__init__(self, PPO, Sensenet, ExplorationParameters)
-        self.env.level = 'TouchWandEnv-v0'
+        self.env.level = 'TouchWandCoachEnv'
         self.learning_rate = 0.001
         self.num_heatup_steps = 0
         self.agent.num_consecutive_training_steps = 1
