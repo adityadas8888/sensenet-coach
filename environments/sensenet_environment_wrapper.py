@@ -145,5 +145,4 @@ class SensenetEnvironmentWrapper(EnvironmentWrapper):
         return self.state
 
     def get_rendered_image(self):
-        #return self.env.render(mode='rgb_array')
-        return np.zeros((512,512,3), np.uint8) #we are blind :)
+        return self.env.render(mode='rgb_array')
