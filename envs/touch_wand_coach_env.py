@@ -211,7 +211,7 @@ class TouchWandCoachEnv(HandEnv):
 
         if self.is_touching():
             touch_reward = 1000
-            depths = np.asarray(depth,dtype=np.float32)
+            depths = np.asarray(depths,dtype=np.float32)
             new_obs = np.absolute(depths - 1.0)
             # if you want binary representation of depth camera, uncomment
             # the line below
