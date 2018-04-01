@@ -91,7 +91,7 @@ class SensenetEnvironmentWrapper(EnvironmentWrapper):
 
         # measurements
         if self.env.spec is not None:
-            self.timestep_limit = self.env.spec.timestep_limit
+            self.timestep_limit = self.env.spec.timestep_limit or self.env.timestep_limit
         else:
             self.timestep_limit = None
         #self.measurements_size = len(self.step(0)['info'].keys())

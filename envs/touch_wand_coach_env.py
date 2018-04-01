@@ -32,6 +32,7 @@ class TouchWandCoachEnv(HandEnv):
         self.done_training = False
         self.wandLength = 0.5
         self.wandSide = 0.005
+        self.timestep_limit = 400
         self.cameraImageHeight = int((2 * 0.851 * self.wandSide)*11800)
         self.action_space = spaces.Discrete(6)
         self.observation_space = spaces.Box(0, 1, [self.cameraImageHeight, self.cameraImageHeight])
