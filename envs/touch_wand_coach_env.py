@@ -7,11 +7,15 @@ import sensenet
 from sensenet.envs.handroid.hand_env import HandEnv
 from sensenet import spaces
 from sklearn.model_selection import train_test_split
+from os import environ
 
 class TouchWandCoachEnv(HandEnv):
     def __init__(self,options={}):
         self.options = options
-        self.options['data_path'] = '/touch_data'
+        if environ.get('TOUCH_DATA') is not None:
+            self.options['data_path'] = os.environ['TOUCH_DATA'] 
+        else:
+            self.options['data_path'] = '/touch_data'
         self.options['test_split_ratio'] = 0.2
         self.steps = 0
 
