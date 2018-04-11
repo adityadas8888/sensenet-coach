@@ -391,6 +391,63 @@ class TouchWand_PPO(Preset):
         self.agent.async_training = True
         self.env.normalize_observation = True
 
+class TouchWandPro_DFP(Preset):
+    def __init__(self):
+        Preset.__init__(self, DFP, Doom, ExplorationParameters)
+        self.env.level = 'BASIC'
+        self.agent.num_episodes_in_experience_replay = 200
+        self.learning_rate = 0.0001
+        self.num_heatup_steps = 1000
+        self.exploration.epsilon_decay_steps = 10000
+        self.agent.use_accumulated_reward_as_measurement = True
+        self.agent.goal_vector = [0.0, 1.0]
+        # self.agent.num_consecutive_playing_steps = 10
+
+class TouchWandPro_DQN(Preset):
+    def __init__(self):
+        Preset.__init__(self, DQN, Sensenet, ExplorationParameters)
+        self.env.level = 'TouchWandCoachEnv'
+        self.agent.num_steps_between_copying_online_weights_to_target = 100
+        self.learning_rate = 0.00025
+        self.agent.num_episodes_in_experience_replay = 200
+        self.num_heatup_steps = 1000
+        self.exploration.epsilon_decay_steps = 3000
+        self.agent.discount = 1.0
+
+        self.test = True
+        self.test_max_step_threshold = 150
+        self.test_min_return_threshold = 150
+
+class TouchWandPro_PPO(Preset):
+    def __init__(self):
+        Preset.__init__(self, PPO, Sensenet, ExplorationParameters)
+        self.env.level = 'TouchWandCoachEnv'
+        self.learning_rate = 0.001
+        self.num_heatup_steps = 0
+        self.agent.num_consecutive_training_steps = 1
+        self.agent.num_consecutive_playing_steps = 5000
+        self.agent.discount = 0.99
+        self.batch_size = 128
+        self.agent.policy_gradient_rescaler = 'GAE'
+        self.agent.gae_lambda = 0.96
+        self.visualization.dump_csv = True
+        self.agent.optimizer_type = 'Adam'
+        self.agent.shared_optimizer = False
+        self.agent.async_training = True
+        self.env.normalize_observation = True
+U
+class Doom_Basic_DFP(Preset):
+    def __init__(self):
+        Preset.__init__(self, DFP, Doom, ExplorationParameters)
+        self.env.level = 'BASIC'
+        self.agent.num_episodes_in_experience_replay = 200
+        self.learning_rate = 0.0001
+        self.num_heatup_steps = 1000
+        self.exploration.epsilon_decay_steps = 10000
+        self.agent.use_accumulated_reward_as_measurement = True
+        self.agent.goal_vector = [0.0, 1.0]
+        # self.agent.num_consecutive_playing_steps = 10
+
 class CartPole_C51(Preset):
     def __init__(self):
         Preset.__init__(self, CategoricalDQN, GymVectorObservation, ExplorationParameters)
