@@ -435,7 +435,6 @@ class TouchWandPro_PPO(Preset):
         self.agent.shared_optimizer = False
         self.agent.async_training = True
         self.env.normalize_observation = True
-U
 class Doom_Basic_DFP(Preset):
     def __init__(self):
         Preset.__init__(self, DFP, Doom, ExplorationParameters)
