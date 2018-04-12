@@ -393,8 +393,8 @@ class TouchWand_PPO(Preset):
 
 class TouchWandPro_DFP(Preset):
     def __init__(self):
-        Preset.__init__(self, DFP, Doom, ExplorationParameters)
-        self.env.level = 'BASIC'
+        Preset.__init__(self, DFP, Sensenet, ExplorationParameters)
+        self.env.level = 'TouchWandProEnv'
         self.agent.num_episodes_in_experience_replay = 200
         self.learning_rate = 0.0001
         self.num_heatup_steps = 1000
@@ -406,7 +406,7 @@ class TouchWandPro_DFP(Preset):
 class TouchWandPro_DQN(Preset):
     def __init__(self):
         Preset.__init__(self, DQN, Sensenet, ExplorationParameters)
-        self.env.level = 'TouchWandCoachEnv'
+        self.env.level = 'TouchWandProEnv'
         self.agent.num_steps_between_copying_online_weights_to_target = 100
         self.learning_rate = 0.00025
         self.agent.num_episodes_in_experience_replay = 200
@@ -421,7 +421,7 @@ class TouchWandPro_DQN(Preset):
 class TouchWandPro_PPO(Preset):
     def __init__(self):
         Preset.__init__(self, PPO, Sensenet, ExplorationParameters)
-        self.env.level = 'TouchWandCoachEnv'
+        self.env.level = 'TouchWandProEnv'
         self.learning_rate = 0.001
         self.num_heatup_steps = 0
         self.agent.num_consecutive_training_steps = 1
