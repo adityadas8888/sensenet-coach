@@ -7,10 +7,13 @@ import sensenet
 from sensenet.envs.handroid.hand_env import HandEnv
 from sensenet import spaces
 from sklearn.model_selection import train_test_split
+from os import environ
 
 class TouchWandProEnv(HandEnv):
     def __init__(self,options={}):
         self.options = options
+        if environ.get('TOUCH_DATA') is not None:
+            self.options['data_path'] = os.environ['TOUCH_DATA'] 
         self.steps = 0
 
         #TODO check if options is a string, so we know which environment to load
@@ -27,6 +30,7 @@ class TouchWandProEnv(HandEnv):
         self.wandSide = 0.005
         self.cameraImageHeight = int((2 * 0.851 * self.wandSide)*11800)
         self.action_space = spaces.Discrete(6)
+        self.timestep_limit = 400
         #self.observation_space = spaces.Box(0, 1, [6,  self.cameraImageHeight, self.cameraImageHeight])
         self.observation_space = spaces.Box(-100, 100, self.cameraImageHeight**2+6)
         self.touch_history = []
